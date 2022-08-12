@@ -8,14 +8,30 @@
 </head>
 <body>
     <form action="/toDoList" method="POST">
-        <input type="text" placeholder="task" name="name">
-        <div id="myDropdown" class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 4</a>
-        </div>
+        <input type="text" placeholder="task" name="task">
+        <select id="myDropdown" class="dropdown-content" name="taskType">
+            <option value="personal">Personal</option>
+            <option value="personal">Work</option>
+            <option value="business">Business</option>
+            <option value="other">Other</option>
+        </select>
+        <select id="myDropdown" class="dropdown-content" name="importance">
+            <option value="high">High</option>
+            <option value="medium">Med</option>
+            <option value="low">Low</option>
+            <option value="none"></option>
+        </select>
         <button type="submit">Submit</button>
     </form>
+    <ul class="toDoList">
+        <% for(let i = 0; i < toDoList.length; i++) {%>
+            <li class="taskList">
+                <span><%= i+1 %> </span>
+                <span> <%=toDoList[i].task%>  </span>
+                <span> <%=toDoList[i].taskType%>  </span>
+                <span> <%=toDoList[i].importance%>  </span>
+            </li>    
+        <% } %> 
+    </ul>
 </body>
 </html>

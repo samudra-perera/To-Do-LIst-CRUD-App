@@ -18,10 +18,6 @@ MongoClient.connect(connectionString, {
             console.log('listening on 3000')
         })
 
-        app.get('/', (req,res) => {
-            res.sendFile(__dirname + '/index.html')
-        })
-
         //Inserting a task into the to-do-list
         app.post('/toDoList', (req, res) => {
             toDoList.insertOne(req.body)
@@ -29,6 +25,16 @@ MongoClient.connect(connectionString, {
                 res.redirect('/')
             })
             .catch(err => console.error(err))
+        })
+
+        //Getting the tasks from MongoDB 
+        app.get('/', (req, res) => {
+            db.collection('toDoList').find().toArray()
+            .then(results => {
+                res.render('index.ejs', { toDoList: results })
+            })
+            .catch(err => console.error(err))
+            
         })
     })
     .catch(err => console.error(err))
