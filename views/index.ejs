@@ -24,7 +24,7 @@
         <button type="submit">Submit</button>
     </form>
     <ul class="toDoList">
-        <% for(let i = 0; i < toDoList.length; i++) {%>
+        <% for(let i = 1; i < toDoList.length; i++) {%>
             <li class="taskList">
                 <span class=theTask><%=toDoList[i].task%></span>
                 <span><%=toDoList[i].taskType%></span>
@@ -34,8 +34,8 @@
             </li>    
         <% } %>
     </ul>
-    <h2>Tasks Remaining: <%=toDoList.length%></h2>
-    <h2>Task Completed: </h2>
+    <h2>Tasks Remaining: <%=toDoList.length - 1%></h2>
+    <h2>Task Completed: <%=toDoList[0].completed %> </h2>
     <script src="/main.js"></script>
 </body>
 </html>

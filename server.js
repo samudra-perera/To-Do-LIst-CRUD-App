@@ -16,8 +16,9 @@ MongoClient.connect(connectionString, {
     })
     .catch(err => console.error(err))
 
-    app.use(express.static('public'))
     app.use(bodyParser.urlencoded({ extended: true }))
+    app.use(express.json())
+    app.use(express.static('public'))
     app.set('view engine', 'ejs')
 
     //Getting the tasks from MongoDB 
@@ -45,7 +46,7 @@ MongoClient.connect(connectionString, {
 
     //Deleting a task from MongoDB 
     app.delete('/deleteTask', (req, res) => {
-        console.log(req)
+        console.log([req, 'request'])
         db.collection('toDoList').deleteOne({task: req.body.taskNameS})
         .then(result => {
             console.log('Task got deleted')

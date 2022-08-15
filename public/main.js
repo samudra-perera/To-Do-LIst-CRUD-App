@@ -13,16 +13,17 @@ Array.from(completeButton).forEach(elem => {
 
 async function deleteTask() {
     const taskName = this.parentNode.childNodes[1].innerText
+    console.log([taskName, 'taskName'])
     try {
-        const response = await fetch('deleteTask', {
+        const response = await fetch('/deleteTask', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'taskNameS': taskName,
+              taskNameS: taskName,
             })
           })
         const data = await response.json()
-        console.log(data)
+        console.log([data, 'data'])
         location.reload()
 
     } catch (err) {
