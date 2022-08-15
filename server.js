@@ -1,5 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const { response } = require('express');
+const { json } = require('body-parser');
 const app = express();
 const PORT = 3000;
 const MongoClient = require('mongodb').MongoClient
@@ -55,6 +57,21 @@ MongoClient.connect(connectionString, {
         .catch(err => console.error(err))
     })
     
+    app.put('/addToCompleted', (req, res) => {
+        db.collection('toDoList').updateOne({completed: req.body.completedS}, {
+            $set: {
+                completed: req.body.completedS + 1
+            }
+        })
+        .then(result => {
+            console.log('Add one task')
+            res.json('Like')
+        })
+        .catch(err => confirm.error(err))
+    })
+
+
+
     app.listen(process.env.PORT || PORT, ()=>{
         console.log(`Server running on port ${PORT}`)
     })
