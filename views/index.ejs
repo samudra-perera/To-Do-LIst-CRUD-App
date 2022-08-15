@@ -26,12 +26,16 @@
     <ul class="toDoList">
         <% for(let i = 0; i < toDoList.length; i++) {%>
             <li class="taskList">
-                <span><%= i+1 %> </span>
-                <span> <%=toDoList[i].task%>  </span>
-                <span> <%=toDoList[i].taskType%>  </span>
-                <span> <%=toDoList[i].importance%>  </span>
+                <span class=theTask><%=toDoList[i].task%></span>
+                <span><%=toDoList[i].taskType%></span>
+                <span><%=toDoList[i].importance%></span>
+                <span class="deleteButton"><button>Delete</button></span>
+                <span class="completeButton"><button>Complete</button></span>
             </li>    
-        <% } %> 
+        <% } %>
     </ul>
+    <h2>Tasks Remaining: <%=toDoList.length%></h2>
+    <h2>Task Completed: </h2>
+    <script src="/main.js"></script>
 </body>
 </html>
