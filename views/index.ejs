@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
     <title>To Do List</title>
 </head>
 <body>
@@ -19,23 +20,31 @@
             <option value="high">High</option>
             <option value="medium">Med</option>
             <option value="low">Low</option>
-            <option value="none"></option>
+            <option value=""></option>
         </select>
         <button type="submit">Submit</button>
     </form>
     <ul class="toDoList">
-        <% for(let i = 1; i < toDoList.length; i++) {%>
+        <% for(let i = 0; i < toDoList.length; i++) {%>
             <li class="taskList">
-                <span class=theTask><%=toDoList[i].task%></span>
+                <% if(toDoList[i].completed == true) {%>
+                    <span class="completed"><%=toDoList[i].task%></span>
+                <% } else { %>
+                    <span><%=toDoList[i].task%></span>
+                <% } %>
                 <span><%=toDoList[i].taskType%></span>
                 <span><%=toDoList[i].importance%></span>
                 <span class="deleteButton"><button>Delete</button></span>
-                <span class="completeButton"><button>Complete</button></span>
+                <% if(toDoList[i].completed == true) {%>
+                    <span class="UncompleteButton"><button>Uncomplete</button></span>
+                <% } else { %>
+                    <span class="completeButton"><button>Complete</button></span>
+                <% } %>
             </li>    
         <% } %>
     </ul>
-    <h2>Tasks Remaining: <%=toDoList.length - 1%></h2>
-    <h2 class="completedTasks">Task Completed: <%=toDoList[0].completed %> </h2>
+    <h2>Tasks Remaining: <%=tasksLeft%></h2>
+    <h2 class="completedTasks">Task Completed: <%=taskCompleted%></h2>
     <script src="/main.js"></script>
 </body>
 </html>

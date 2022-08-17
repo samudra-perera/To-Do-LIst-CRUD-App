@@ -24,13 +24,15 @@ MongoClient.connect(connectionString, {
     app.set('view engine', 'ejs')
 
     //Getting the tasks from MongoDB 
-    app.get('/', (req, res) => {
-        db.collection('toDoList').find().toArray()
-        .then(results => {
-            res.render('index.ejs', { toDoList: results })
-        })
-        .catch(err => console.error(err))
-        
+    app.get('/', async(req, res) => {
+        try{
+            const toDoList = await db.collection('toDoList').find().toArray()
+            const tasksLeft = await db.collection('toDoList').countDocuments({completed: false})
+            const taskCompleted = await db.collection('toDoList').countDocuments({completed: true})
+            res.render('index.ejs', {toDoList: toDoList, tasksLeft: tasksLeft, taskCompleted: taskCompleted})
+        } catch(err) {
+            console.error(err)
+        }
     })
 
     //Inserting a task into the to-do-list
@@ -39,6 +41,7 @@ MongoClient.connect(connectionString, {
             task: req.body.task,
             taskType: req.body.taskType,
             importance: req.body.importance,
+            completed: false
         })
         .then(result => {
             res.redirect('/')
@@ -58,13 +61,26 @@ MongoClient.connect(connectionString, {
     })
     
     app.put('/addToCompleted', (req, res) => {
-        db.collection('toDoList').updateOne({completed: req.body.completedS}, {
+        db.collection('toDoList').updateOne({task: req.body.taskNameS}, {
             $set: {
-                completed: req.body.completedS + 1
+                completed: true
             }
         })
         .then(result => {
             console.log('Add one task')
+            res.json('Like')
+        })
+        .catch(err => confirm.error(err))
+    })
+
+    app.put('/addToUnComplete', (req, res) => {
+        db.collection('toDoList').updateOne({task: req.body.taskNameS}, {
+            $set: {
+                completed: false
+            }
+        })
+        .then(result => {
+            console.log('UnAdd one task')
             res.json('Like')
         })
         .catch(err => confirm.error(err))
