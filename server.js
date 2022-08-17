@@ -1,7 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { response } = require('express');
-const { json } = require('body-parser');
 const app = express();
 const PORT = 3000;
 const MongoClient = require('mongodb').MongoClient
@@ -60,6 +58,7 @@ MongoClient.connect(connectionString, {
         .catch(err => console.error(err))
     })
     
+    //Updating a task --> Setting the Complete to true when the task is completed
     app.put('/addToCompleted', (req, res) => {
         db.collection('toDoList').updateOne({task: req.body.taskNameS}, {
             $set: {
@@ -73,6 +72,7 @@ MongoClient.connect(connectionString, {
         .catch(err => confirm.error(err))
     })
 
+    //Updating a task --> Setting the Complete to false when the task is uncompleted
     app.put('/addToUnComplete', (req, res) => {
         db.collection('toDoList').updateOne({task: req.body.taskNameS}, {
             $set: {
@@ -86,8 +86,7 @@ MongoClient.connect(connectionString, {
         .catch(err => confirm.error(err))
     })
 
-
-
+    //Listening to the port where the server is running localling
     app.listen(process.env.PORT || PORT, ()=>{
         console.log(`Server running on port ${PORT}`)
     })
