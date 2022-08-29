@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/normalize.css">
     <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/main.css">
@@ -17,22 +20,26 @@
                 <h2 class="taskRemaining">Tasks Remaining: <%=tasksLeft%></h2>
                 <h2 class="completedTasks">Task Completed: <%=taskCompleted%></h2>
             </div>
-            <form action="/toDoList" method="POST">
-                <input type="text" placeholder="Enter Task..." name="task">
-                <select id="myDropdown" class="dropdown-content" name="taskType">
-                    <option value="personal">Personal</option>
-                    <option value="personal">Work</option>
-                    <option value="business">Business</option>
-                    <option value="other">Other</option>
-                </select>
-                <select id="myDropdown" class="dropdown-content" name="importance">
-                    <option value="high">High</option>
-                    <option value="medium">Med</option>
-                    <option value="low">Low</option>
-                    <option value=""></option>
-                </select>
-                <button type="submit">Submit</button>
-            </form>
+            <div class="form">
+                <form action="/toDoList" method="POST">
+                    <input type="text" placeholder="Enter Task..." name="task">
+                    <select id="myDropdown" class="dropdown-content" name="taskType">
+                        <option value="personal">Personal</option>
+                        <option value="personal">Work</option>
+                        <option value="business">Business</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select id="myDropdown" class="dropdown-content importance" name="importance">
+                        <option value="high">High</option>
+                        <option value="medium">Med</option>
+                        <option value="low">Low</option>
+                        <option value=""></option>
+                    </select>
+                    <div class="select">
+                        <button type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
             <ul class="toDoList">
                 <% for(let i = 0; i < toDoList.length; i++) {%>
                     <% if(toDoList[i].completed == true) {%>
