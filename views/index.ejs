@@ -4,47 +4,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/normalize.css">
+    <link rel="stylesheet" href="/reset.css">
     <link rel="stylesheet" href="/main.css">
     <title>To Do List</title>
 </head>
 <body>
-    <form action="/toDoList" method="POST">
-        <input type="text" placeholder="task" name="task">
-        <select id="myDropdown" class="dropdown-content" name="taskType">
-            <option value="personal">Personal</option>
-            <option value="personal">Work</option>
-            <option value="business">Business</option>
-            <option value="other">Other</option>
-        </select>
-        <select id="myDropdown" class="dropdown-content" name="importance">
-            <option value="high">High</option>
-            <option value="medium">Med</option>
-            <option value="low">Low</option>
-            <option value=""></option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-    <ul class="toDoList">
-        <% for(let i = 0; i < toDoList.length; i++) {%>
-            <li class="taskList">
-                <% if(toDoList[i].completed == true) {%>
-                    <span class="completed"><%=toDoList[i].task%></span>
-                <% } else { %>
-                    <span><%=toDoList[i].task%></span>
+    <div class="parent">
+        <div class="container">
+            <h1 class="title">Get Things Done!</h1>
+            <div class="taskTracker">
+                <h2 class="taskRemaining">Tasks Remaining: <%=tasksLeft%></h2>
+                <h2 class="completedTasks">Task Completed: <%=taskCompleted%></h2>
+            </div>
+            <form action="/toDoList" method="POST">
+                <input type="text" placeholder="Enter Task..." name="task">
+                <select id="myDropdown" class="dropdown-content" name="taskType">
+                    <option value="personal">Personal</option>
+                    <option value="personal">Work</option>
+                    <option value="business">Business</option>
+                    <option value="other">Other</option>
+                </select>
+                <select id="myDropdown" class="dropdown-content" name="importance">
+                    <option value="high">High</option>
+                    <option value="medium">Med</option>
+                    <option value="low">Low</option>
+                    <option value=""></option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+            <ul class="toDoList">
+                <% for(let i = 0; i < toDoList.length; i++) {%>
+                    <% if(toDoList[i].completed == true) {%>
+                        <li class="taskList completed">        
+                    <% } else { %>
+                        <li class="taskList">
+                    <% } %>
+                        <div class="task">
+                            <span class="taskText"><%=toDoList[i].task%></span>
+                        </div>
+                        <div class="tags">
+                            <span class="taskType"><%=toDoList[i].taskType%></span>
+                            <span class="taskImportance"><%=toDoList[i].importance%></span>
+                        </div>
+                        <div class="compAndDelButtons">
+                            <span class="deleteButton"><button>Delete</button></span>
+                            <% if(toDoList[i].completed == true) {%>
+                                <span class="UncompleteButton"><button>Uncomplete</button></span>
+                            <% } else { %>
+                                <span class="completeButton"><button>Complete</button></span>
+                            <% } %>
+                        </div>
+                    </li>    
                 <% } %>
-                <span><%=toDoList[i].taskType%></span>
-                <span><%=toDoList[i].importance%></span>
-                <span class="deleteButton"><button>Delete</button></span>
-                <% if(toDoList[i].completed == true) {%>
-                    <span class="UncompleteButton"><button>Uncomplete</button></span>
-                <% } else { %>
-                    <span class="completeButton"><button>Complete</button></span>
-                <% } %>
-            </li>    
-        <% } %>
-    </ul>
-    <h2>Tasks Remaining: <%=tasksLeft%></h2>
-    <h2 class="completedTasks">Task Completed: <%=taskCompleted%></h2>
+            </ul>
+        </div>
+    </div>
     <script src="/main.js"></script>
 </body>
 </html>

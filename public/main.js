@@ -18,7 +18,7 @@ Array.from(unCompleteButton).forEach(elem => {
 
 //Async function to delete tasks using taskName as the query parameter for the route
 async function deleteTask() {
-    const taskName = this.parentNode.childNodes[1].innerText
+    const taskName = this.parentNode.parentNode.childNodes[1].childNodes[1].innerText
     try {
         const response = await fetch('/deleteTask', {
             method: 'delete',
@@ -38,7 +38,7 @@ async function deleteTask() {
 
 //Async function to delete tasks using taskName as the query parameter for the route
 async function completetask() {
-    const taskName = this.parentNode.childNodes[1].innerText
+    const taskName = this.parentNode.parentNode.childNodes[1].childNodes[1].innerText
     try {
         const response = await fetch('addToCompleted', {
             method: 'put',
@@ -58,7 +58,7 @@ async function completetask() {
 
 //Async function to delete tasks using taskName as the query parameter for the route
 async function unCompleteTask() {
-    const taskName = this.parentNode.childNodes[1].innerText
+    const taskName = this.parentNode.parentNode.childNodes[1].childNodes[1].innerText
     try {
         const response = await fetch('addToUnComplete', {
             method: 'put',

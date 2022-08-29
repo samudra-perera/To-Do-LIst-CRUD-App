@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const PORT = 3000;
+const app = express();
 const MongoClient = require('mongodb').MongoClient
 const connectionString = 'mongodb+srv://ToDoList:1234567890@cluster0.m2ppucy.mongodb.net/?retryWrites=true&w=majority';
 require('dotenv').config()
 
 let db
 
-MongoClient.connect(connectionString, {
+MongoClient.connect(process.env.DB_STRING, {
     useUnifiedTopology: true })
     .then(client => {
         db = client.db('to-do-list')
@@ -49,7 +49,6 @@ MongoClient.connect(connectionString, {
 
     //Deleting a task from MongoDB 
     app.delete('/deleteTask', (req, res) => {
-        console.log([req, 'request'])
         db.collection('toDoList').deleteOne({task: req.body.taskNameS})
         .then(result => {
             console.log('Task got deleted')

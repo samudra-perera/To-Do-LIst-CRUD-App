@@ -1,3 +1,108 @@
 .completed {
     color: red
 }
+
+/* LAYOUT */
+h1.title {
+    margin-top: 1em;
+}
+
+.parent {
+    display: flex;
+    justify-content: center;
+}
+
+.taskTracker {
+    display: flex;
+    justify-content: space-around;
+    margin: 1em;
+}
+
+li.taskList {
+    display: flex;
+}
+
+.task {
+    flex: 2;
+}
+
+.tags {
+    display: grid;
+    flex: 1;
+}
+
+.compAndDelButtons {
+    flex: 1;
+    display: grid;
+}
+
+
+/*** TYPOGRAPHY ***/
+h1.title {
+    text-align: center;
+    font-size: 2em;
+}
+
+.tags {
+    text-transform: capitalize;
+}
+
+.taskTracker h2 {
+    font-size: 1.15em;
+}
+
+button {
+    text-align: center;
+    cursor: pointer;
+}
+
+/*** Component Styling ***/
+li.taskList {
+    height: 65px;
+    border: 2px solid;
+    margin: 20px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.taskTracker h2 {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 10px 0 5px;
+}
+
+.completeButton button {
+    border: none;
+    background-color: rgb(42, 157, 143);
+    color: white;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+.completeButton button:hover {
+    background-color: rgb(25, 97, 89);
+}
+
+.deleteButton button {
+    border: none;
+    background: #dc2f02;
+    color: white;
+    padding: 6px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+}
+
+.deleteButton button:hover {
+    background: #ad2807;
+}
+
+.UncompleteButton button {
+    border: none;
+    background: rgb(244, 162, 97);
+    padding: 6px;
+    color: white;
+    border-radius: 10px;
+}
+
