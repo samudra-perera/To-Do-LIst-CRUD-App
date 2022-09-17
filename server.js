@@ -1,18 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const PORT = 3000;
+const PORT = 2121;
 const app = express();
 const MongoClient = require('mongodb').MongoClient
-const connectionString = 'mongodb+srv://ToDoList:1234567890@cluster0.m2ppucy.mongodb.net/?retryWrites=true&w=majority';
 require('dotenv').config()
 
-let db
+let db,
+    connectionString = 'mongodb+srv://ToDoList:<password>@cluster0.m2ppucy.mongodb.net/?retryWrites=true&w=majority',
+    dbName = 'to-do-list'
 
-MongoClient.connect(process.env.DB_STRING, {
-    useUnifiedTopology: true })
+MongoClient.connect(connectionString, { useUnifiedTopology: true })
     .then(client => {
-        db = client.db('to-do-list')
         console.log('Connected to the Database')
+        db = client.db(dbName)
     })
     .catch(err => console.error(err))
 
