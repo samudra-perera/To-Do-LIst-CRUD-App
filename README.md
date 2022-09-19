@@ -1,8 +1,6 @@
 # To Do List / Task Manager
 A simple to do list application where user can add (create), complete (update), and remove tasks (remove) and have them rendered on a simple UI (read).
 
-**Link to project:** http://recruiters-love-seeing-live-demos.com/
-
 ![alt tag](http://placecorgi.com/1200/650)
 
 ## Installation
